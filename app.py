@@ -18,6 +18,10 @@ class Student(db.Model):
     class_name = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(100), nullable=False)
 
+
+with app.app_context():
+        db.create_all()
+
 @app.route('/')
 def home():
     query = request.args.get('q')
@@ -75,6 +79,5 @@ def contact():
     return render_template('contact.html')
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
+   
     app.run(debug=True)
